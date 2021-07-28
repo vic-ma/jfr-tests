@@ -21,17 +21,9 @@ public class TestConcurrentEvents {
         Runnable r = () -> {
             int count = 1024 * 1024;
             for (int i = 0; i < count; i++) {
-                StringEvent stringEvent = new StringEvent();
-                stringEvent.message = "Event has been generated!";
-                stringEvent.commit();
-
                 IntegerEvent integerEvent = new IntegerEvent();
                 integerEvent.number = Integer.MAX_VALUE;
                 integerEvent.commit();
-
-                ClassEvent classEvent = new ClassEvent();
-                classEvent.clazz = Math.class;
-                classEvent.commit();
             }
         };
         Thread.UncaughtExceptionHandler eh = (t, e) -> e.printStackTrace();
